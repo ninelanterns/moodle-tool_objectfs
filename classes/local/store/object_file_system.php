@@ -140,6 +140,10 @@ abstract class object_file_system extends \file_system_filedir {
     }
 
     protected function get_remote_path_from_hash($contenthash) {
+        global $CFG;
+        if (!empty($CFG->tool_objectfs_cache_local)) {
+            return $this->get_local_path_from_hash($contenthash, true);
+        }
         if ($this->preferexternal) {
             $location = $this->get_object_location_from_hash($contenthash);
             if ($location == OBJECT_LOCATION_DUPLICATED) {

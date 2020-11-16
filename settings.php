@@ -129,7 +129,7 @@ if ($ADMIN->fulltree) {
 
     $warningtext = '';
     $signingsupport = false;
-    if (!empty($config->filesystem)) {
+    if (!empty($config->filesystem) && method_exists('file_storage', 'get_file_system')) {
         $signingsupport = (new $config->filesystem())->supports_presigned_urls();
     }
     if (!method_exists('file_system', 'supports_xsendfile')) {

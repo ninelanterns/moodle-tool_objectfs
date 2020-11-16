@@ -40,7 +40,9 @@ class generate_status_report extends task {
      * Execute task
      */
     public function execute() {
-        objectfs_report::cleanup_reports();
-        objectfs_report::generate_status_report();
+        if ($this->enabled_tasks()) {
+            objectfs_report::cleanup_reports();
+            objectfs_report::generate_status_report();
+        }
     }
 }

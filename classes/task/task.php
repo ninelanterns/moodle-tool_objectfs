@@ -73,7 +73,7 @@ abstract class task extends \core\task\scheduled_task implements objectfs_task {
      */
     protected function enabled_tasks() {
         $enabletasks = (bool)$this->config->enabletasks;
-        if (!$enabletasks) {
+        if (!$enabletasks|| !method_exists('file_storage', 'get_file_system')) {
             mtrace(get_string('not_enabled', 'tool_objectfs'));
         }
         return $enabletasks;
